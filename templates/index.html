@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini RPG</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>GEMINI RPG - THE MULTIVERSE CHRONICLES</h1>
+        <p>An AI-powered text adventure with branching storylines where YOUR choices shape the narrative.</p>
+        <form action="{% url 'world' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Begin Your Adventure</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creation - Gemini RPG</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Character Creation</h1>
+        <form action="{% url 'game' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Character Name:</label>
+                <input type="text" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Background:</label>
+                <select name="background" required>
+                    <option value="Warrior">Warrior</option>
+                    <option value="Mage">Mage</option>
+                    <option value="Rogue">Rogue</option>
+                    <option value="Diplomat">Diplomat</option>
+                    <option value="Scholar">Scholar</option>
+                    <option value="Merchant">Merchant</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Character Traits (comma-separated):</label>
+                <input type="text" name="traits" placeholder="brave, curious, stubborn" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Character Description:</label>
+                <textarea name="description" required></textarea>
+            </div>
+            
+            <button type="submit">Continue</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+h1 {
+    text-align: center;
+    color: #00ff00;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00ff00;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #00ff00;
+    background-color: #1a1a1a;
+    color: #fff;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #00ff00;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #00cc00;
+}
+
+.story-text {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+}
+
+.quit-button {
+    background-color: #ff3333;
+}
+
+.quit-button:hover {
+    background-color: #cc0000;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+        font-size: 16px; /* Prevents zoom on mobile */
+        padding: 12px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .story-text {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    textarea {
+        height: 80px;
+    }
+}

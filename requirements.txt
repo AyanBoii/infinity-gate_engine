@@ -1,0 +1,48 @@
+# Core frameworks
+Django==4.2.7
+flask==3.0.0
+
+# Django extensions
+channels==4.0.0
+channels-redis==4.1.0
+daphne==4.0.0
+djangorestframework==3.14.0
+django-cors-headers==4.3.0
+drf-nested-routers==0.93.4
+
+# Database
+psycopg2-binary==2.9.9
+
+# Authentication
+bcrypt==4.0.1
+PyJWT==2.8.0
+
+# Environment variables
+python-dotenv==1.0.0
+
+# AI/ML
+google-generativeai==0.3.2
+
+# Development tools
+ipython==8.18.1
+
+# Message broker and caching
+redis==5.0.1
+celery>=5.3.0
+
+# Logging and utilities
+loguru>=0.7.0
+python-json-logger>=2.0.4
+
+# WebSocket support
+websockets>=10.4
+
+# Async support
+asyncio>=3.4.3
+
+# Additional utilities
+python-dateutil>=2.8.2
+pytz>=2022.7
+
+# Container management
+docker==6.1.3

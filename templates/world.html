@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Setting - Gemini RPG</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>World Setting</h1>
+        <form action="{% url 'character' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Choose Genre:</label>
+                <select name="genre" required>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                    <option value="Historical">Historical</option>
+                    <option value="Post-Apocalyptic">Post-Apocalyptic</option>
+                    <option value="Cyberpunk">Cyberpunk</option>
+                    <option value="Steampunk">Steampunk</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Mystery">Mystery</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>World Description:</label>
+                <textarea name="world_description" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Main Conflict:</label>
+                <textarea name="main_conflict" required></textarea>
+            </div>
+            
+            <button type="submit">Begin Adventure</button>
+        </form>
+    </div>
+</body>
+</html>
