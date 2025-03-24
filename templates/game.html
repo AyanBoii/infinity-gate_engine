@@ -11,7 +11,7 @@
     <div class="container game-container">
         <div class="story-text">
             {% if story %}
-                {{ story|safe }}
+                <p>{{ story|linebreaks }}</p>
             {% else %}
                 <p>Your adventure is about to begin...</p>
             {% endif %}
