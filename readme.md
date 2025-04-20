@@ -44,9 +44,13 @@ Gemini RPG is an AI-powered text adventure game that allows players to explore a
    ```
 
 4. Set up PostgreSQL:
-
-   - Create a database named `codehive`.
-   - Update the `.env` file with your PostgreSQL credentials.
+   - Create a database named `codehive`.
+   - Update the `.env` file with your PostgreSQL credentials.
+	  Creating `codehive`:
+		- run `psql --version` to verify installation
+		- check if PostgreSQL is accepting connections
+		- run: ```psql -U postgres -c "CREATE DATABASE codehive;" -c "CREATE USER postgres WITH PASSWORD '<your psql password>';" -c "ALTER USER postgres WITH SUPERUSER;"``` to create the codehive DB
+		- run: ```psql -U postgres -d codehive -c "\l"``` to verify if everything is working correctly.
 
 5. Run migrations:
 
