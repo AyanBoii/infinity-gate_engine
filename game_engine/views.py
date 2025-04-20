@@ -333,6 +333,46 @@ def _generate_initial_scene(request, session_id, game_state):
         world_description = world.get('description', '')
         world_conflict = world.get('main_conflict', '')
         
+        # Generate character image
+        print("\n🎨 Generating character image...")
+        try:
+            # Construct the prompt for the diffusion model
+            image_prompt = f"pixel art style, {character_background} {character_name}, "
+            image_prompt += f"traits: {character_traits}, "
+            image_prompt += f"description: {character_description}, "
+            image_prompt += f"in a {world_genre} setting, "
+            image_prompt += f"world: {world_description}"
+            
+            # Update the prompt in run_TestDiff.py
+            with open('run_TestDiff.py', 'r', encoding='utf-8') as file:
+                lines = file.readlines()
+            
+            # Find and replace the prompt line while preserving indentation
+            for i, line in enumerate(lines):
+                if line.strip().startswith('prompt ='):
+                    # Get the original indentation
+                    indentation = line[:line.find('prompt')]
+                    # Create the new line with the same indentation
+                    lines[i] = f'{indentation}prompt = "{image_prompt}"\n'
+                    break
+            
+            # Write the updated content back to the file
+            with open('run_TestDiff.py', 'w', encoding='utf-8') as file:
+                file.writelines(lines)
+            
+            # Run the diffusion model
+            import subprocess
+            subprocess.run(['python', 'run_TestDiff.py'], check=True, encoding='utf-8')
+            print("✅ Character image generated successfully!")
+            
+            # Add image URL to the scene data
+            image_url = "/pixel-art-xl-001.png"
+        except Exception as e:
+            print(f"❌ Error generating character image: {str(e)}")
+            print(f"❌ Error details: {str(e)}")
+            traceback.print_exc()  # Print full traceback
+            image_url = None
+        
         prompt = f"""
         You are starting a text-based role-playing game. Generate the opening scene based on the following:
         
@@ -353,7 +393,8 @@ def _generate_initial_scene(request, session_id, game_state):
                 "First choice for the player",
                 "Second choice for the player",
                 "Third choice for the player"
-            ]
+            ],
+            "image_url": "{image_url}"
         }}
         """
         
@@ -380,7 +421,8 @@ def _generate_initial_scene(request, session_id, game_state):
                     "Explore the immediate surroundings",
                     "Look for other people",
                     "Check your belongings"
-                ]
+                ],
+                "image_url": image_url
             }
     except Exception as e:
         print(f"Error generating initial scene: {str(e)}")
@@ -392,7 +434,8 @@ def _generate_initial_scene(request, session_id, game_state):
                 "Look around",
                 "Call out for help",
                 "Try to remember what happened"
-            ]
+            ],
+            "image_url": None
         }
 
 def _generate_scene_for_choice(request, session_id, game_state, selected_option):

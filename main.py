@@ -4,6 +4,7 @@ import json
 import random
 from IPython.display import clear_output
 import getpass
+import subprocess
 
 import google.generativeai as genai
 
@@ -68,6 +69,10 @@ class GeminiRPG:
         
         print("\n✅ Character created successfully!")
         time.sleep(1)
+        
+        # Generate character image after setting is chosen
+        print("\n🎨 Generating your character's image...")
+        self.generate_character_image()
     
     def choose_setting(self):
         clear_output(wait=True)
@@ -88,6 +93,10 @@ class GeminiRPG:
         
         print("\n✅ World setting configured!")
         time.sleep(1)
+        
+        # Generate character image after setting is chosen
+        print("\n🎨 Generating your character's image...")
+        self.generate_character_image()
     
     def generate_story_context(self):
         self.story_context = f"""
@@ -131,6 +140,11 @@ class GeminiRPG:
     def start_game(self):
         clear_output(wait=True)
         print("🎮 Preparing your adventure...")
+        
+        # Generate a new character image based on the complete character and setting
+        print("\n🎨 Generating your character's image...")
+        self.generate_character_image()
+        
         self.generate_story_context()
         
         # Generate the initial story segment
@@ -197,6 +211,38 @@ class GeminiRPG:
             
         except Exception as e:
             print(f"Error loading game: {e}")
+
+    def generate_character_image(self):
+        """Generate a character image based on character attributes and world setting"""
+        # Construct the prompt using character and setting information
+        character_prompt = f"pixel art style, {self.character['background']} {self.character['name']}, "
+        character_prompt += f"traits: {', '.join(self.character['traits'])}, "
+        character_prompt += f"description: {self.character['description']}, "
+        character_prompt += f"in a {self.story_settings['genre']} setting, "
+        character_prompt += f"world: {self.story_settings['world_description']}"
+        
+        # Update the prompt in run_TestDiff.py
+        with open('run_TestDiff.py', 'r') as file:
+            lines = file.readlines()
+        
+        # Find and replace the prompt line
+        for i, line in enumerate(lines):
+            if line.strip().startswith('prompt ='):
+                lines[i] = f'prompt = "{character_prompt}"\n'
+                break
+        
+        # Write the updated content back to the file
+        with open('run_TestDiff.py', 'w') as file:
+            file.writelines(lines)
+        
+        # Run the diffusion model
+        try:
+            subprocess.run(['python', 'run_TestDiff.py'], check=True)
+            print("✅ Character image generated successfully!")
+            return True
+        except subprocess.CalledProcessError as e:
+            print(f"❌ Error generating character image: {e}")
+            return False
 
 # Run the game
 if __name__ == "__main__" or "__file__" not in globals():
