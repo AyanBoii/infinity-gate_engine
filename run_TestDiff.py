@@ -37,7 +37,7 @@ try:
     pipe.to(device)
 
     # Prompt settings
-    prompt = "cute corgi in a fantasy setting"
+    prompt = "pixel art style, A former elven archmage who left the Ivory Tower after a magical accident. Now seeks redemption through adventure. Eldara Moonweaver, traits: Intelligent, Mysterious, Haunted by past mistakes, Seeks knowledge, description: Tall and graceful with silver hair and glowing blue eyes. Wears flowing robes adorned with arcane symbols., in a Fantasy setting, world: A high-fantasy world with magic and mythical creatures. The realm is divided between the ancient elven forests, human kingdoms, and the mysterious Shadowlands."
     negative_prompt = "3d render, realistic, blurry, low quality, distorted, deformed"
     num_images = 1
 

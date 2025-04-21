@@ -42,6 +42,11 @@ Gemini RPG is an AI-powered text adventure game that allows players to explore a
    ```bash
    pip install -r requirements.txt
    ```
+   Then run the following:
+   1. `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
+   2. `pip install diffusers transformers accelerate safetensors`
+   3. `pip install huggingface_hub[hf_xet]`
+   4. `pip install peft`
 
 4. Set up PostgreSQL:
    - Create a database named `codehive`.

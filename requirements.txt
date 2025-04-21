@@ -22,15 +22,7 @@ python-dotenv==1.0.0
 
 # AI/ML
 google-generativeai==0.3.2
-torch==2.1.0+cu121
-torchvision==0.16.0+cu121
-torchaudio==2.1.0+cu121
-diffusers==0.24.0
-transformers==4.35.2
-accelerate==0.24.1
-safetensors==0.4.0
-huggingface-hub[hf_xet]==0.19.4
-peft==0.6.2
+
 
 # Development tools
 ipython==8.18.1
