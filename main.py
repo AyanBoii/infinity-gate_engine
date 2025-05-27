@@ -5,12 +5,20 @@ import random
 from IPython.display import clear_output
 import getpass
 import subprocess
+from dotenv import load_dotenv
 
 import google.generativeai as genai
 
 class GeminiRPG:
     def __init__(self):
-        self.api_key = None
+        # Load environment variables from .env file
+        load_dotenv()
+        
+        # Get API key from environment variable
+        self.api_key = os.getenv('GOOGLE_API_KEY')
+        if not self.api_key:
+            raise ValueError("GOOGLE_API_KEY not found in environment variables")
+            
         self.model = None
         self.genres = ["Fantasy", "Sci-Fi", "Historical", "Post-Apocalyptic", "Cyberpunk", "Steampunk", "Horror", "Mystery"]
         self.character = {}
@@ -21,7 +29,6 @@ class GeminiRPG:
     def setup_api(self):
         print("🔑 Google Gemini API Setup")
         print("--------------------------")
-        self.api_key = "AIzaSyCp_NwwtbGzk-PBxtIsREPhwm0xAJZ8CGk"  # Replace with your actual API key
         try:
             genai.configure(api_key=self.api_key)
             self.model = genai.GenerativeModel('gemini-2.0-flash')

@@ -77,6 +77,30 @@ Gemini RPG is an AI-powered text adventure game that allows players to explore a
 
 8. Access the application at `http://127.0.0.1:8000/`.
 
+## Environment Variables
+
+Create a `.env` file in the root directory of the project with the following variables:
+
+```env
+# Google Gemini API Key (Required)
+GOOGLE_API_KEY=your_gemini_api_key_here
+
+# Django Secret Key (Required)
+SECRET_KEY=your_django_secret_key_here
+
+# Database Configuration (Required)
+DB_PASSWORD=your_postgres_password_here
+
+# Optional: Gemini API Key for Game Engine (if different from main API key)
+GEMINI_API_KEY=your_alternative_gemini_api_key_here
+```
+
+Note: 
+- Never commit the `.env` file to version control
+- Keep your API keys and secrets secure
+- The `.env` file is already included in `.gitignore`
+- Replace the placeholder values with your actual credentials
+
 ## Usage
 
 - Begin your adventure by clicking "Begin Your Adventure" on the main page.
